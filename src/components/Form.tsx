@@ -1,6 +1,15 @@
 import { useState } from 'react'
+
+
+
 const Form = () => {
-	const [city, setCity] = useState("");
+	const [city, setCity] = useState<string>("");
+	const getWeather = (e: any) => {
+		e.preventDefault()
+		fetch("http://api.weatherapi.com/v1/current.json?key=fa849fbe1af6436ba7255502240903&q=London&aqi=no")
+			.then(res => res.json())
+			.then(data => console.log(data))
+	}
 
 	return (
 		<form>
@@ -10,8 +19,7 @@ const Form = () => {
 				placeholder="都市名"
 				onChange={e => setCity(e.target.value)}
 			/>
-			{city}
-			<button type="submit">
+			<button type="submit" onClick={getWeather}>
 				Get Weather
 			</button>
 		</form>
