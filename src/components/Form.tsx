@@ -2,20 +2,21 @@
 
 type FormProps = {
 	setCity: React.Dispatch<React.SetStateAction<string>>
-	getWeather: (e: any) => void
+	getWeather: (e: React.FormEvent<HTMLFormElement>) => void
+	city: string
 }
 
 const Form = (props: FormProps) => {
-
 	return (
-		<form>
+		<form onSubmit={props.getWeather}>
 			<input
-				type="test"
+				type="text"
 				name="city"
 				placeholder="都市名"
 				onChange={e => props.setCity(e.target.value)}
+				value={props.city}
 			/>
-			<button type="submit" onClick={props.getWeather}>
+			<button type="submit">
 				Get Weather
 			</button>
 		</form>
